@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import Country from './components/Country/Country';
+import CountryInformations from './components/CountryInformations/CountryInformations';
 
 function App() {
   // --use state for storing data load --//
@@ -17,12 +18,24 @@ function App() {
       .catch(error => console.log(error))
     
   }, [])
+
+  // --add country state--//
+const [addCountry, setaddCountry] = useState([])
+  // --add country event handler--//
+ const handleAddCountry = (country) => {
+  //  console.log('added',country);
+   const newAddCountry = [...addCountry,country];
+   setaddCountry(newAddCountry);
+
+ }
+   
   return (
     <div className="App">
       <h1>Total Countries : {countries.length}</h1>
+      <CountryInformations addCountry={addCountry}></CountryInformations>
       
         {
-          countries.map(country => <Country countryInfo ={country}></Country>)
+          countries.map(country => <Country handleAddCountry={handleAddCountry} countryInfo ={country} ></Country>)
         }
       
     </div>

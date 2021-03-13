@@ -3,18 +3,18 @@ import React from 'react';
 import './Country.css';
 
 const Country = (props) => {
-
     // --destructuring ---//
-    const {name,area,capital,flag,population,region} = props.countryInfo;
-    // console.log(country);
+    const {name,capital,flag} = props.countryInfo;
+
+    const handleAddCountry = props.handleAddCountry;
+    // console.log(handleAddCountry);
+    
     return (
         <div className='country-container'>
+            <h5>This is a {name}</h5>
             <img src={flag} alt=""/>
-            <p>{name}</p>
-            <p>{area}</p>
-            <p>{capital}</p>
-            <p>{population}</p>
-            <p>{region}</p>
+            <p>Capital : {capital}</p>
+            <button onClick={() => handleAddCountry(props.countryInfo)}>Add country</button>
         </div>
     );
 };
